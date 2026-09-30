@@ -1,0 +1,6 @@
+# Repo-only files that don't need to be deployed.
+tools/
+README.md
+.gitignore
+.env*
+.vercel

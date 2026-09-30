@@ -1,0 +1,265 @@
+/* Zenless theme palettes.
+ * GENERATED from zenless-download-manager/src/shared/theme.rs (builtin_themes()).
+ * Same 15 colors, same order as the apps. Do not hand-edit; regenerate instead.
+ * Any element can carry data-theme="<id>" to scope a palette (used by the swatches). */
+
+/* Zenless */
+:root,
+[data-theme="zenless"] {
+  --bg: #0d0e12;
+  --surface: #15171d;
+  --surface2: #1e2129;
+  --input: #0a0b0e;
+  --stripe: #121419;
+  --border: #2a2e38;
+  --text: #eceef3;
+  --dim: #8a90a0;
+  --accent: #d4ff3f;
+  --accent-fg: #0d0e12;
+  --accent2: #3fd8ff;
+  --success: #5ee29a;
+  --warning: #ffc53d;
+  --danger: #ff5c6c;
+  --info: #5aa9ff;
+  color-scheme: dark;
+}
+
+/* Midnight */
+[data-theme="midnight"] {
+  --bg: #0b1020;
+  --surface: #121a2e;
+  --surface2: #1a2440;
+  --input: #080c18;
+  --stripe: #0f1628;
+  --border: #26325a;
+  --text: #e6ebff;
+  --dim: #8791b5;
+  --accent: #5b8cff;
+  --accent-fg: #ffffff;
+  --accent2: #a77bff;
+  --success: #4fd18b;
+  --warning: #f5b945;
+  --danger: #ff5d73;
+  --info: #5bc0ff;
+  color-scheme: dark;
+}
+
+/* Dracula */
+[data-theme="dracula"] {
+  --bg: #21222c;
+  --surface: #282a36;
+  --surface2: #343746;
+  --input: #1b1c24;
+  --stripe: #252631;
+  --border: #44475a;
+  --text: #f8f8f2;
+  --dim: #9ea3c0;
+  --accent: #bd93f9;
+  --accent-fg: #21222c;
+  --accent2: #ff79c6;
+  --success: #50fa7b;
+  --warning: #f1fa8c;
+  --danger: #ff5555;
+  --info: #8be9fd;
+  color-scheme: dark;
+}
+
+/* Nord */
+[data-theme="nord"] {
+  --bg: #2e3440;
+  --surface: #3b4252;
+  --surface2: #434c5e;
+  --input: #272c36;
+  --stripe: #353c4a;
+  --border: #4c566a;
+  --text: #eceff4;
+  --dim: #9aa5b8;
+  --accent: #88c0d0;
+  --accent-fg: #2e3440;
+  --accent2: #81a1c1;
+  --success: #a3be8c;
+  --warning: #ebcb8b;
+  --danger: #bf616a;
+  --info: #5e81ac;
+  color-scheme: dark;
+}
+
+/* Tokyo Night */
+[data-theme="tokyo-night"] {
+  --bg: #16161e;
+  --surface: #1a1b26;
+  --surface2: #24283b;
+  --input: #111118;
+  --stripe: #1c1d29;
+  --border: #2f334d;
+  --text: #c0caf5;
+  --dim: #7a82a8;
+  --accent: #7aa2f7;
+  --accent-fg: #16161e;
+  --accent2: #bb9af7;
+  --success: #9ece6a;
+  --warning: #e0af68;
+  --danger: #f7768e;
+  --info: #7dcfff;
+  color-scheme: dark;
+}
+
+/* Catppuccin Mocha */
+[data-theme="catppuccin-mocha"] {
+  --bg: #181825;
+  --surface: #1e1e2e;
+  --surface2: #313244;
+  --input: #11111b;
+  --stripe: #1c1c2b;
+  --border: #45475a;
+  --text: #cdd6f4;
+  --dim: #9399b2;
+  --accent: #cba6f7;
+  --accent-fg: #1e1e2e;
+  --accent2: #f5c2e7;
+  --success: #a6e3a1;
+  --warning: #f9e2af;
+  --danger: #f38ba8;
+  --info: #89b4fa;
+  color-scheme: dark;
+}
+
+/* Gruvbox */
+[data-theme="gruvbox"] {
+  --bg: #1d2021;
+  --surface: #282828;
+  --surface2: #3c3836;
+  --input: #161819;
+  --stripe: #242424;
+  --border: #504945;
+  --text: #ebdbb2;
+  --dim: #a89984;
+  --accent: #fe8019;
+  --accent-fg: #1d2021;
+  --accent2: #fabd2f;
+  --success: #b8bb26;
+  --warning: #fabd2f;
+  --danger: #fb4934;
+  --info: #83a598;
+  color-scheme: dark;
+}
+
+/* Rosé Pine */
+[data-theme="rose-pine"] {
+  --bg: #191724;
+  --surface: #1f1d2e;
+  --surface2: #26233a;
+  --input: #13111e;
+  --stripe: #1c1a29;
+  --border: #403d52;
+  --text: #e0def4;
+  --dim: #908caa;
+  --accent: #ebbcba;
+  --accent-fg: #191724;
+  --accent2: #c4a7e7;
+  --success: #9ccfd8;
+  --warning: #f6c177;
+  --danger: #eb6f92;
+  --info: #31748f;
+  color-scheme: dark;
+}
+
+/* Neon Cyber */
+[data-theme="neon-cyber"] {
+  --bg: #07070d;
+  --surface: #0e0e18;
+  --surface2: #171726;
+  --input: #040408;
+  --stripe: #0b0b14;
+  --border: #2a2a45;
+  --text: #f2f3ff;
+  --dim: #8b8db0;
+  --accent: #00f0ff;
+  --accent-fg: #07070d;
+  --accent2: #ff2bd6;
+  --success: #39ff88;
+  --warning: #ffe14d;
+  --danger: #ff3860;
+  --info: #7c7cff;
+  color-scheme: dark;
+}
+
+/* Forest */
+[data-theme="forest"] {
+  --bg: #121a16;
+  --surface: #18221d;
+  --surface2: #223029;
+  --input: #0d1410;
+  --stripe: #151e19;
+  --border: #2e3f36;
+  --text: #e3efe7;
+  --dim: #8ea596;
+  --accent: #7fd18b;
+  --accent-fg: #0f1a13;
+  --accent2: #d6c26b;
+  --success: #7fd18b;
+  --warning: #e8b85c;
+  --danger: #e8716c;
+  --info: #6cb8d6;
+  color-scheme: dark;
+}
+
+/* Solarized Light */
+[data-theme="solarized-light"] {
+  --bg: #fdf6e3;
+  --surface: #eee8d5;
+  --surface2: #e4ddc8;
+  --input: #fffbef;
+  --stripe: #f5efdc;
+  --border: #d3cbb4;
+  --text: #3b4a50;
+  --dim: #7c8b8f;
+  --accent: #268bd2;
+  --accent-fg: #ffffff;
+  --accent2: #d33682;
+  --success: #859900;
+  --warning: #b58900;
+  --danger: #dc322f;
+  --info: #2aa198;
+  color-scheme: light;
+}
+
+/* Paper */
+[data-theme="paper"] {
+  --bg: #f6f6f4;
+  --surface: #ffffff;
+  --surface2: #ececea;
+  --input: #ffffff;
+  --stripe: #f1f1ef;
+  --border: #dadad6;
+  --text: #1c1d21;
+  --dim: #6b6e76;
+  --accent: #2f6feb;
+  --accent-fg: #ffffff;
+  --accent2: #8b5cf6;
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --info: #0284c7;
+  color-scheme: light;
+}
+
+/* High Contrast */
+[data-theme="high-contrast"] {
+  --bg: #000000;
+  --surface: #0a0a0a;
+  --surface2: #1a1a1a;
+  --input: #000000;
+  --stripe: #111111;
+  --border: #ffffff;
+  --text: #ffffff;
+  --dim: #d0d0d0;
+  --accent: #ffe600;
+  --accent-fg: #000000;
+  --accent2: #00e5ff;
+  --success: #00ff66;
+  --warning: #ffaa00;
+  --danger: #ff3355;
+  --info: #33aaff;
+  color-scheme: dark;
+}

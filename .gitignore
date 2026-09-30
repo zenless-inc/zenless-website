@@ -1,0 +1,16 @@
+# Vercel CLI
+.vercel/
+
+# Local tooling
+node_modules/
+*.log
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+.vercel
+.env*

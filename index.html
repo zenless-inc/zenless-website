@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="en" data-theme="zenless">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zenless: fast, native download manager &amp; torrent client for Windows</title>
+  <meta name="description" content="Zenless is a free, open-source suite of tiny native Windows apps written in Rust: a 32-connection download manager, a BitTorrent client, browser integration for Chrome and Firefox, and a setup that installs only what you pick.">
+  <meta name="theme-color" content="#0d0e12">
+  <meta name="color-scheme" content="dark light">
+
+  <!-- Absolute site URL (https://zenless-suite.vercel.app) is used below for canonical/OG/Twitter,
+       and in sitemap.xml + robots.txt. Search & replace it everywhere if the domain changes. -->
+  <link rel="canonical" href="https://zenless-suite.vercel.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Zenless">
+  <meta property="og:title" content="Zenless: Download faster. Torrent smarter. Stay zen.">
+  <meta property="og:description" content="Free, open-source Windows apps written in Rust: a multi-connection download manager, a BitTorrent client and browser integration. Install only what you need.">
+  <meta property="og:url" content="https://zenless-suite.vercel.app/">
+  <meta property="og:image" content="https://zenless-suite.vercel.app/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Zenless: Download faster. Torrent smarter. Stay zen.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Zenless: Download faster. Torrent smarter. Stay zen.">
+  <meta name="twitter:description" content="Free, open-source Windows apps written in Rust: a multi-connection download manager, a BitTorrent client and browser integration.">
+  <meta name="twitter:image" content="https://zenless-suite.vercel.app/assets/img/og.png">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=Geist:wght@400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap">
+  <link rel="stylesheet" href="/assets/css/themes.css?v=0.1.0">
+  <link rel="stylesheet" href="/assets/css/site.css?v=0.1.0">
+  <script src="/assets/js/theme-init.js?v=0.1.0"></script>
+  <script src="/assets/js/site.js?v=0.1.0" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Zenless",
+    "description": "Free, open-source suite of native Windows apps: a multi-connection download manager, a BitTorrent client and browser integration.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Windows 10, Windows 11",
+    "softwareVersion": "0.1.0",
+    "license": "https://opensource.org/licenses/MIT",
+    "url": "https://zenless-suite.vercel.app/",
+    "downloadUrl": "https://github.com/zenless-inc/zenless-installer/releases/latest/download/ZenlessSetup.exe",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="/" aria-label="Zenless home">
+        <svg class="mark" viewBox="0 0 256 256" aria-hidden="true"><defs><linearGradient id="zg-head" gradientUnits="userSpaceOnUse" x1="40" y1="40" x2="216" y2="216"><stop class="stop-a" offset="0"/><stop class="stop-b" offset="1"/></linearGradient></defs><rect class="mark-bg" x="12" y="12" width="232" height="232" rx="58"/><path class="mark-z" stroke="url(#zg-head)" d="M76 72 H180 L84 184 H180"/></svg>
+        <span>Zenless</span>
+      </a>
+      <nav class="nav-primary" aria-label="Primary">
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="/#apps">Apps</a></li>
+          <li><a href="/#themes">Themes</a></li>
+          <li><a href="/#rust">Built with Rust</a></li>
+          <li><a href="/#privacy">Privacy</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a class="icon-btn gh-link" href="https://github.com/zenless-inc" aria-label="Zenless on GitHub"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#github"/></svg></a>
+        <a class="btn btn-primary btn-sm" href="/download"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#download"/></svg>Download</a>
+        <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+          <svg class="icon icon-open" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#menu"/></svg>
+          <svg class="icon icon-close" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#x"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ================= Hero ================= -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="wrap hero-inner">
+        <div class="hero-mark rise rise-1">
+          <svg class="mark" viewBox="0 0 256 256" role="img" aria-label="Zenless logo"><defs><linearGradient id="zg-hero" gradientUnits="userSpaceOnUse" x1="40" y1="40" x2="216" y2="216"><stop class="stop-a" offset="0"/><stop class="stop-b" offset="1"/></linearGradient></defs><rect class="mark-bg" x="12" y="12" width="232" height="232" rx="58"/><path class="mark-z" stroke="url(#zg-hero)" d="M76 72 H180 L84 184 H180"/></svg>
+        </div>
+        <a class="pill rise rise-1" href="/download"><span class="pill-badge">v0.1</span>Free &amp; open source for Windows<svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#arrow-right"/></svg></a>
+        <h1 id="hero-title" class="hero-title rise rise-2">
+          <span class="line">Download faster.</span>
+          <span class="line">Torrent smarter.</span>
+          <span class="line grad-text">Stay zen.</span>
+        </h1>
+        <p class="hero-lead rise rise-3">Zenless is a family of <strong>tiny, native Windows apps written in Rust</strong>: a multi-connection download manager, a BitTorrent client and browser integration. Install only the ones you want.</p>
+        <div class="cta-row rise rise-4">
+          <a class="btn btn-primary btn-lg" href="https://github.com/zenless-inc/zenless-installer/releases/latest/download/ZenlessSetup.exe">
+            <svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#windows"/></svg>
+            Download Zenless Setup
+          </a>
+          <a class="btn btn-ghost btn-lg" href="https://github.com/zenless-inc">
+            <svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#github"/></svg>
+            View on GitHub
+          </a>
+        </div>
+        <ul class="fineprint rise rise-4" aria-label="Requirements">
+          <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check"/></svg>Windows 10 / 11</li>
+          <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check"/></svg>No admin needed</li>
+          <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check"/></svg>Free, MIT licensed</li>
+        </ul>
+      </div>
+
+      <!-- Live HTML/CSS mock of the Download Manager (not a screenshot). -->
+      <div class="wrap stage">
+        <div class="dm" data-dm role="img" aria-label="Preview of the Zenless Download Manager window: a download list with live progress bars, a sidebar of categories and a segment map showing twelve connections downloading one file in parallel.">
+          <div class="dm-titlebar">
+            <img src="/assets/img/download-manager.svg" alt="" width="16" height="16">
+            <span class="dm-title">Zenless Download Manager</span>
+            <span class="dm-winbtns" aria-hidden="true">
+              <span><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#minus"/></svg></span>
+              <span><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#square"/></svg></span>
+              <span><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#x"/></svg></span>
+            </span>
+          </div>
+          <div class="dm-toolbar">
+            <span class="dm-tb primary"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#plus"/></svg><span class="tb-label">Add URL</span></span>
+            <span class="dm-tb"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#play"/></svg><span class="tb-label">Resume</span></span>
+            <span class="dm-tb"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#pause"/></svg><span class="tb-label">Pause</span></span>
+            <span class="dm-tb opt"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#stop"/></svg><span class="tb-label">Stop</span></span>
+            <span class="dm-tb"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#trash"/></svg><span class="tb-label">Delete</span></span>
+            <span class="dm-sep opt"></span>
+            <span class="dm-tb opt"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#queue"/></svg><span class="tb-label">Queue</span></span>
+            <span class="dm-tb opt"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#gauge"/></svg><span class="tb-label">Limiter</span></span>
+            <span class="dm-tb opt"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#sliders"/></svg><span class="tb-label">Settings</span></span>
+            <span class="dm-search"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#search"/></svg><span class="search-text">Search downloads</span></span>
+          </div>
+          <div class="dm-body">
+            <div class="dm-side">
+              <div class="dm-lbl">Library</div>
+              <div class="dm-nav on"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#list"/></svg>All downloads<span class="n">24</span></div>
+              <div class="dm-nav"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#download"/></svg>Downloading<span class="n">3</span></div>
+              <div class="dm-nav"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#hourglass"/></svg>Queued<span class="n">2</span></div>
+              <div class="dm-nav"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#check-circle"/></svg>Completed<span class="n">18</span></div>
+              <div class="dm-lbl">Categories</div>
+              <div class="dm-nav"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#archive"/></svg>Compressed<span class="n">6</span></div>
+              <div class="dm-nav"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#doc"/></svg>Documents<span class="n">4</span></div>
+              <div class="dm-nav"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#music"/></svg>Music<span class="n">3</span></div>
+              <div class="dm-nav"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#package"/></svg>Programs<span class="n">7</span></div>
+              <div class="dm-nav"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#video"/></svg>Video<span class="n">4</span></div>
+              <div class="dm-side-foot">
+                <div class="dm-toggle-row">Speed limiter<span class="dm-switch"></span></div>
+                <div class="dm-toggle-row">Clipboard watch<span class="dm-switch on"></span></div>
+                <div class="dm-toggle-row">Browser capture<span class="dm-switch on"></span></div>
+              </div>
+            </div>
+            <div class="dm-main">
+              <div class="dm-table">
+                <div class="dm-th">
+                  <span>Name</span><span class="col-size">Size</span><span>Progress</span><span class="col-speed">Speed</span><span class="col-eta">Time left</span><span class="col-status">Status</span>
+                </div>
+                <div class="dm-tr sel" data-row data-main data-state="downloading" data-size="6301999104" data-p="0.36">
+                  <div class="dm-name"><span class="ficon c-accent2"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#disc"/></svg></span><span>ubuntu-24.04.3-desktop-amd64.iso</span></div>
+                  <span class="num col-size">5.87 GB</span>
+                  <div class="dm-prog"><div class="bar"><i></i></div><span class="num pct" data-f="pct">36%</span></div>
+                  <span class="num hi col-speed" data-f="speed">—</span>
+                  <span class="num col-eta" data-f="eta">—</span>
+                  <span class="col-status"><span class="st" data-f="status">Downloading</span></span>
+                </div>
+                <div class="dm-tr" data-row data-state="downloading" data-size="385875968" data-p="0.58" data-speed="9856000">
+                  <div class="dm-name"><span class="ficon c-accent"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#package"/></svg></span><span>blender-4.5.3-windows-x64.msi</span></div>
+                  <span class="num col-size">368 MB</span>
+                  <div class="dm-prog"><div class="bar"><i></i></div><span class="num pct" data-f="pct">58%</span></div>
+                  <span class="num hi col-speed" data-f="speed">—</span>
+                  <span class="num col-eta" data-f="eta">—</span>
+                  <span class="col-status"><span class="st" data-f="status">Downloading</span></span>
+                </div>
+                <div class="dm-tr" data-row data-state="downloading" data-size="2297807667" data-p="0.21" data-speed="22020096">
+                  <div class="dm-name"><span class="ficon c-danger"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#video"/></svg></span><span>sintel-2010-open-movie-4k.mkv</span></div>
+                  <span class="num col-size">2.14 GB</span>
+                  <div class="dm-prog"><div class="bar"><i></i></div><span class="num pct" data-f="pct">21%</span></div>
+                  <span class="num hi col-speed" data-f="speed">—</span>
+                  <span class="num col-eta" data-f="eta">—</span>
+                  <span class="col-status"><span class="st" data-f="status">Downloading</span></span>
+                </div>
+                <div class="dm-tr" data-row data-state="completed" data-size="11744051" data-p="1">
+                  <div class="dm-name"><span class="ficon c-accent"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#package"/></svg></span><span>rustup-init.exe</span></div>
+                  <span class="num col-size">11.2 MB</span>
+                  <div class="dm-prog"><div class="bar"><i></i></div><span class="num pct" data-f="pct">100%</span></div>
+                  <span class="num col-speed" data-f="speed">—</span>
+                  <span class="num col-eta" data-f="eta">—</span>
+                  <span class="col-status"><span class="st" data-f="status">Completed</span></span>
+                </div>
+                <div class="dm-tr" data-row data-state="queued" data-size="933232640" data-p="0">
+                  <div class="dm-name"><span class="ficon c-info"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#database"/></svg></span><span>open-dataset-2026-q3.parquet</span></div>
+                  <span class="num col-size">890 MB</span>
+                  <div class="dm-prog"><div class="bar"><i></i></div><span class="num pct" data-f="pct">0%</span></div>
+                  <span class="num col-speed" data-f="speed">—</span>
+                  <span class="num col-eta" data-f="eta">—</span>
+                  <span class="col-status"><span class="st" data-f="status">Queued</span></span>
+                </div>
+                <div class="dm-tr extra" data-row data-state="paused" data-size="88709939" data-p="0.63">
+                  <div class="dm-name"><span class="ficon c-success"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#music"/></svg></span><span>podcast-ep142-final.mp3</span></div>
+                  <span class="num col-size">84.6 MB</span>
+                  <div class="dm-prog"><div class="bar"><i></i></div><span class="num pct" data-f="pct">63%</span></div>
+                  <span class="num col-speed" data-f="speed">—</span>
+                  <span class="num col-eta" data-f="eta">—</span>
+                  <span class="col-status"><span class="st" data-f="status">Paused</span></span>
+                </div>
+                <div class="dm-tr extra" data-row data-state="queued" data-size="1288490188" data-p="0">
+                  <div class="dm-name"><span class="ficon c-warning"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#archive"/></svg></span><span>font-collection-2026.zip</span></div>
+                  <span class="num col-size">1.20 GB</span>
+                  <div class="dm-prog"><div class="bar"><i></i></div><span class="num pct" data-f="pct">0%</span></div>
+                  <span class="num col-speed" data-f="speed">—</span>
+                  <span class="num col-eta" data-f="eta">—</span>
+                  <span class="col-status"><span class="st" data-f="status">Queued</span></span>
+                </div>
+              </div>
+              <div class="dm-detail">
+                <div class="dm-detail-head">
+                  <strong>ubuntu-24.04.3-desktop-amd64.iso</strong>
+                  <span class="num" data-d="done">2.11 GB of 5.87 GB</span>
+                  <span class="num" data-d="conns">12 / 12 connections</span>
+                  <span class="num hi grow" data-d="eta"></span>
+                </div>
+                <div class="segmap" data-segmap></div>
+                <div class="dm-legend">
+                  <span><i></i>Downloaded</span>
+                  <span><i class="l2"></i>Active connection</span>
+                  <span><i class="l3"></i>Remaining</span>
+                  <span data-d="parts">12 segments</span>
+                  <span>Resume: supported</span>
+                </div>
+                <div class="dm-conns">
+                  <span class="dm-conn">#01<b>—</b></span><span class="dm-conn">#02<b>—</b></span><span class="dm-conn">#03<b>—</b></span><span class="dm-conn">#04<b>—</b></span>
+                  <span class="dm-conn">#05<b>—</b></span><span class="dm-conn">#06<b>—</b></span><span class="dm-conn">#07<b>—</b></span><span class="dm-conn">#08<b>—</b></span>
+                  <span class="dm-conn">#09<b>—</b></span><span class="dm-conn">#10<b>—</b></span><span class="dm-conn">#11<b>—</b></span><span class="dm-conn">#12<b>—</b></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dm-statusbar">
+            <span><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#download"/></svg><b class="spd" data-d="total">—</b></span>
+            <span data-d="active">3 active · 2 queued</span>
+            <span class="opt"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#gauge"/></svg>Limiter off</span>
+            <span class="opt"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#clipboard"/></svg>Clipboard watch on</span>
+            <svg class="dm-spark" data-spark viewBox="0 0 90 18" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,18 90,18"/><polyline points="0,18 90,18"/></svg>
+          </div>
+        </div>
+        <p class="stage-caption">A live preview built in HTML, not a screenshot. Switch themes below and watch it follow.</p>
+      </div>
+    </section>
+
+    <!-- ================= Stats ================= -->
+    <section class="section-tight" aria-label="Zenless at a glance">
+      <div class="wrap">
+        <div class="stats reveal">
+          <div class="stat"><div class="stat-num grad-text">32</div><div class="stat-label">connections per download</div></div>
+          <div class="stat"><div class="stat-num">4</div><div class="stat-label">separate apps: install any mix</div></div>
+          <div class="stat"><div class="stat-num">13</div><div class="stat-label">built-in themes, plus your own</div></div>
+          <div class="stat"><div class="stat-num">0</div><div class="stat-label">telemetry, accounts or ads</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Apps ================= -->
+    <section class="section" id="apps" aria-labelledby="apps-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="kicker">The suite</span>
+          <h2 id="apps-title" class="h2">Separate apps, not a bloated all-in-one.</h2>
+          <p class="lead">Every Zenless app is its own small native program with its own window and settings. Take the download manager without the torrent client, or the other way round. They share one theme system and hand work to each other over localhost, and that's it.</p>
+        </div>
+
+        <div class="bento">
+          <!-- Download Manager -->
+          <article class="card span-7 reveal">
+            <div class="card-head">
+              <img class="app-icon" src="/assets/img/download-manager.svg" alt="" width="56" height="56">
+              <div>
+                <h3>Zenless Download Manager</h3>
+                <span class="card-file">zenless-dm.exe</span>
+              </div>
+            </div>
+            <p class="card-desc">Multi-connection downloads that make full use of your line, and pick up exactly where they left off, even after a reboot.</p>
+            <ul class="feats two">
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#bolt"/></svg>Up to 32 connections per file</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#split"/></svg>Dynamic segmentation: finished connections split the biggest remaining part</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#refresh"/></svg>Pause &amp; resume across restarts</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#queue"/></svg>Download queue</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#gauge"/></svg>Speed limiter</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#tag"/></svg>Automatic categories</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#clipboard"/></svg>Clipboard watch for copied links</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#globe"/></svg>Browser capture via the extension</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#layers"/></svg>Live segment map per download</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#palette"/></svg>13 themes + custom themes</li>
+            </ul>
+            <div class="card-visual" aria-hidden="true">
+              <div class="conn-viz">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="viz-caption"><span>32 parallel connections</span><span>one file</span></div>
+            </div>
+            <div class="card-foot">
+              <a class="btn btn-ghost btn-sm" href="https://github.com/zenless-inc/zenless-download-manager/releases/latest/download/zenless-dm.exe"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#download"/></svg>zenless-dm.exe</a>
+              <a class="btn btn-ghost btn-sm" href="https://github.com/zenless-inc/zenless-download-manager"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#github"/></svg>Source</a>
+            </div>
+          </article>
+
+          <!-- Torrent -->
+          <article class="card span-5 reveal d1">
+            <div class="card-head">
+              <img class="app-icon" src="/assets/img/torrent.svg" alt="" width="56" height="56">
+              <div>
+                <h3>Zenless Torrent</h3>
+                <span class="card-file">zenless-torrent.exe</span>
+              </div>
+            </div>
+            <p class="card-desc">A calm, fast BitTorrent client built on librqbit. No ads, no bundled offers, no nonsense.</p>
+            <ul class="feats">
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#magnet"/></svg>Magnet links &amp; .torrent files</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#checklist"/></svg>Pick exactly which files to download</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#network"/></svg>DHT peer discovery</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#gauge"/></svg>Download &amp; upload speed limits</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#upload"/></svg>Seeding stats and share ratio</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#link"/></svg>Opens magnet: links system-wide</li>
+            </ul>
+            <div class="card-visual" aria-hidden="true">
+              <div class="pieces" data-pieces></div>
+              <div class="viz-caption"><span>pieces</span><span>rarest first</span></div>
+            </div>
+            <div class="card-foot">
+              <a class="btn btn-ghost btn-sm" href="https://github.com/zenless-inc/zenless-torrent-client/releases/latest/download/zenless-torrent.exe"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#download"/></svg>zenless-torrent.exe</a>
+              <a class="btn btn-ghost btn-sm" href="https://github.com/zenless-inc/zenless-torrent-client"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#github"/></svg>Source</a>
+            </div>
+          </article>
+
+          <!-- Extensions -->
+          <article class="card span-5 reveal">
+            <div class="card-head">
+              <img class="app-icon" src="/assets/img/extensions.svg" alt="" width="56" height="56">
+              <div>
+                <h3>Zenless Browser Integration</h3>
+                <span class="card-file">Chrome &amp; Firefox extensions</span>
+              </div>
+            </div>
+            <p class="card-desc">Sends downloads from your browser to Zenless automatically, and talks to nothing except the apps on your own PC.</p>
+            <ul class="feats">
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#download"/></svg>Auto-capture downloads by file type</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#radar"/></svg>Media sniffer for video &amp; audio on pages</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#magnet"/></svg>Magnet links go straight to Zenless Torrent</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#list"/></svg>Download all links on a page</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#lock"/></svg>Only talks to 127.0.0.1</li>
+            </ul>
+            <div class="card-visual">
+              <ul class="chips" aria-label="Supported browsers">
+                <li class="chip"><span class="dot" aria-hidden="true"></span>Chrome</li>
+                <li class="chip"><span class="dot" aria-hidden="true"></span>Edge</li>
+                <li class="chip"><span class="dot" aria-hidden="true"></span>Brave</li>
+                <li class="chip"><span class="dot" aria-hidden="true"></span>Vivaldi</li>
+                <li class="chip"><span class="dot" aria-hidden="true"></span>Opera</li>
+                <li class="chip"><span class="dot" aria-hidden="true"></span>Firefox</li>
+              </ul>
+            </div>
+            <div class="card-foot">
+              <a class="btn btn-ghost btn-sm" href="https://github.com/zenless-inc/zenless-chrome-extension/releases/latest/download/zenless-chrome-extension.zip"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#download"/></svg>Chrome .zip</a>
+              <a class="btn btn-ghost btn-sm" href="https://github.com/zenless-inc/zenless-firefox-extension/releases/latest/download/zenless-firefox-extension.xpi"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#download"/></svg>Firefox .xpi</a>
+              <a class="btn btn-ghost btn-sm" href="/download#extensions">Setup guide</a>
+            </div>
+          </article>
+
+          <!-- Installer -->
+          <article class="card span-7 reveal d1">
+            <div class="card-head">
+              <img class="app-icon" src="/assets/img/installer.svg" alt="" width="56" height="56">
+              <div>
+                <h3>Zenless Setup</h3>
+                <span class="card-file">ZenlessSetup.exe</span>
+              </div>
+            </div>
+            <p class="card-desc">One small graphical installer that asks what you want, and installs nothing else.</p>
+            <ul class="feats two">
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#checklist"/></svg>Choose your components</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#user"/></svg>Per-user install, no admin prompt</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#palette"/></svg>Pick your theme during setup</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#trash"/></svg>Clean, complete uninstall</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#terminal"/></svg>Silent mode for scripted installs (<code>--silent</code>)</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#folder"/></svg>Installs to your user profile</li>
+            </ul>
+            <div class="card-visual" aria-hidden="true">
+              <ul class="checklist">
+                <li class="on"><span class="box"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#check"/></svg></span>Zenless Download Manager<span class="size">zenless-dm.exe</span></li>
+                <li class="on"><span class="box"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#check"/></svg></span>Zenless Torrent<span class="size">zenless-torrent.exe</span></li>
+                <li class="on"><span class="box"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#check"/></svg></span>Browser extension: Chrome &amp; co.<span class="size">unpacked</span></li>
+                <li><span class="box"></span>Browser extension: Firefox<span class="size">.xpi</span></li>
+                <li><span class="box"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#palette"/></svg></span>Theme<span class="size" data-theme-name>Zenless</span></li>
+              </ul>
+            </div>
+            <div class="card-foot">
+              <a class="btn btn-primary btn-sm" href="https://github.com/zenless-inc/zenless-installer/releases/latest/download/ZenlessSetup.exe"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#windows"/></svg>ZenlessSetup.exe</a>
+              <a class="btn btn-ghost btn-sm" href="https://github.com/zenless-inc/zenless-installer"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#github"/></svg>Source</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ================= Themes ================= -->
+    <section class="section" id="themes" aria-labelledby="themes-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="kicker">Themes</span>
+          <h2 id="themes-title" class="h2">Thirteen themes. One&nbsp;click. <span class="grad-text">Every app.</span></h2>
+          <p class="lead">Every Zenless app ships the same 13 palettes, and so does this page. Pick one and the whole site re-colors itself, the same way the apps do.</p>
+        </div>
+
+        <div class="themes-grid">
+          <div class="reveal">
+            <div class="swatches" role="group" aria-label="Choose a theme for this site" data-swatches>
+              <div class="swatch-custom">
+                <svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#sparkle"/></svg>
+                <strong>Your theme here</strong>
+                <span>Tweak all 15 colors, text size, rounding and density in Settings&nbsp;→&nbsp;Appearance.</span>
+              </div>
+            </div>
+            <noscript><p class="muted">Turn on JavaScript to try the themes on this page.</p></noscript>
+            <div class="note">
+              <svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#layers"/></svg>
+              <p><strong>Custom themes are shared by every app.</strong> Make one in any Zenless app and it's saved to <code>%APPDATA%\Zenless\themes</code>. The download manager, torrent client and installer all pick it up, and running apps switch live when you change it. No restart needed.</p>
+            </div>
+          </div>
+
+          <aside class="themes-aside reveal d1" aria-label="Theme preview">
+            <div class="tm" data-tm role="img" aria-label="Preview of the Zenless Torrent window in the selected theme, with one torrent downloading and two seeding.">
+              <div class="dm-titlebar">
+                <img src="/assets/img/torrent.svg" alt="" width="16" height="16">
+                <span class="dm-title">Zenless Torrent</span>
+                <span class="dm-winbtns" aria-hidden="true">
+                  <span><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#minus"/></svg></span>
+                  <span><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#square"/></svg></span>
+                  <span><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#x"/></svg></span>
+                </span>
+              </div>
+              <div class="tm-row" data-row data-state="downloading" data-size="3972844748" data-p="0.46" data-speed="12373196">
+                <div class="dm-name"><span class="ficon c-accent2"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#magnet"/></svg></span><span>debian-13.1.0-amd64-DVD-1.iso</span></div>
+                <div class="dm-prog"><div class="bar"><i></i></div><span class="num pct" data-f="pct">46%</span></div>
+                <span class="num hi tm-sub" data-f="up">↓ —</span>
+                <span class="num" data-f="ratio"></span>
+                <span class="tm-sub"><span class="st" data-f="status">Downloading</span></span>
+              </div>
+              <div class="tm-row" data-row data-state="seeding" data-size="1073741824" data-p="1" data-up="1258291" data-ratio="1.84">
+                <div class="dm-name"><span class="ficon c-danger"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#video"/></svg></span><span>Big Buck Bunny (Blender open movie, 4K)</span></div>
+                <div class="dm-prog"><div class="bar"><i></i></div><span class="num pct" data-f="pct">100%</span></div>
+                <span class="num hi tm-sub" data-f="up">↑ —</span>
+                <span class="num" data-f="ratio"></span>
+                <span class="tm-sub"><span class="st" data-f="status">Seeding</span></span>
+              </div>
+              <div class="tm-row" data-row data-state="seeding" data-size="1503238553" data-p="1" data-up="655360" data-ratio="3.12">
+                <div class="dm-name"><span class="ficon c-accent2"><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#disc"/></svg></span><span>archlinux-2026.09.01-x86_64.iso</span></div>
+                <div class="dm-prog"><div class="bar"><i></i></div><span class="num pct" data-f="pct">100%</span></div>
+                <span class="num hi tm-sub" data-f="up">↑ —</span>
+                <span class="num" data-f="ratio"></span>
+                <span class="tm-sub"><span class="st" data-f="status">Seeding</span></span>
+              </div>
+              <div class="tm-pieces" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+              <div class="tm-foot">
+                <span class="down" data-d="down">↓ —</span>
+                <span class="up" data-d="up">↑ —</span>
+                <span><svg class="icon"><use href="/assets/img/icons.svg?v=0.1.0#network"/></svg>DHT on</span>
+                <span>1 downloading · 2 seeding</span>
+              </div>
+            </div>
+
+            <div class="palette" data-palette>
+              <div class="palette-title"><span data-theme-name>Zenless</span><span class="mono">15 colors</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ================= Rust ================= -->
+    <section class="section" id="rust" aria-labelledby="rust-title">
+      <div class="wrap split">
+        <div class="reveal">
+          <span class="kicker">Built with Rust</span>
+          <h2 id="rust-title" class="h2">Native, tiny and memory-safe.</h2>
+          <p class="lead">No Electron, no bundled browser, no runtime to install. Each Zenless app is a single native <code>.exe</code> of a few megabytes that starts instantly and stays out of your way.</p>
+          <ul class="stack-list">
+            <li><span class="stack-ico"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#monitor"/></svg></span><div><strong>egui / eframe</strong><span>GPU-accelerated immediate-mode UI. Crisp at any DPI and themeable down to the last pixel.</span></div></li>
+            <li><span class="stack-ico"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#bolt"/></svg></span><div><strong>tokio</strong><span>Async I/O that keeps dozens of connections busy on a couple of threads.</span></div></li>
+            <li><span class="stack-ico"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#magnet"/></svg></span><div><strong>librqbit</strong><span>A fast BitTorrent engine written in Rust, at the heart of Zenless Torrent.</span></div></li>
+            <li><span class="stack-ico"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#lock"/></svg></span><div><strong>reqwest + native TLS</strong><span>HTTP/2 and HTTPS through Windows' own SChannel, so there's no OpenSSL to patch.</span></div></li>
+          </ul>
+        </div>
+
+        <div class="reveal d1">
+          <div class="code-win">
+            <div class="code-tabs" role="tablist" aria-label="Cargo manifests">
+              <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <button class="code-tab" type="button" role="tab" id="tab-dm" aria-controls="panel-dm" aria-selected="true">zenless-dm/Cargo.toml</button>
+              <button class="code-tab" type="button" role="tab" id="tab-tr" aria-controls="panel-tr" aria-selected="false" tabindex="-1">zenless-torrent/Cargo.toml</button>
+            </div>
+<pre class="code" id="panel-dm" role="tabpanel" aria-labelledby="tab-dm" tabindex="0"><code><span class="c"># excerpt</span>
+<span class="h">[package]</span>
+<span class="k">name</span> <span class="p">=</span> <span class="s">"zenless-dm"</span>
+<span class="k">version</span> <span class="p">=</span> <span class="s">"0.1.0"</span>
+<span class="k">edition</span> <span class="p">=</span> <span class="s">"2024"</span>
+<span class="k">license</span> <span class="p">=</span> <span class="s">"MIT"</span>
+
+<span class="h">[dependencies]</span>
+<span class="k">eframe</span> <span class="p">=</span> <span class="s">"0.36"</span>      <span class="c"># native GPU UI (egui)</span>
+<span class="k">tokio</span> <span class="p">=</span> <span class="s">"1"</span>         <span class="c"># async connections</span>
+<span class="k">reqwest</span> <span class="p">=</span> <span class="s">"0.13"</span>     <span class="c"># HTTP/2 + SChannel TLS</span>
+<span class="k">tiny_http</span> <span class="p">=</span> <span class="s">"0.12"</span>   <span class="c"># 127.0.0.1 API for the extension</span>
+<span class="k">serde_json</span> <span class="p">=</span> <span class="s">"1"</span>    <span class="c"># plain-JSON settings</span>
+
+<span class="h">[profile.release]</span>
+<span class="k">lto</span> <span class="p">=</span> <span class="s">"thin"</span>
+<span class="k">strip</span> <span class="p">=</span> <span class="b">true</span>
+<span class="k">panic</span> <span class="p">=</span> <span class="s">"abort"</span></code></pre>
+<pre class="code" id="panel-tr" role="tabpanel" aria-labelledby="tab-tr" tabindex="0" hidden><code><span class="c"># excerpt</span>
+<span class="h">[package]</span>
+<span class="k">name</span> <span class="p">=</span> <span class="s">"zenless-torrent"</span>
+<span class="k">version</span> <span class="p">=</span> <span class="s">"0.1.0"</span>
+<span class="k">edition</span> <span class="p">=</span> <span class="s">"2024"</span>
+<span class="k">license</span> <span class="p">=</span> <span class="s">"MIT"</span>
+
+<span class="h">[dependencies]</span>
+<span class="k">librqbit</span> <span class="p">=</span> <span class="s">"9"</span>      <span class="c"># BitTorrent engine</span>
+<span class="k">eframe</span> <span class="p">=</span> <span class="s">"0.36"</span>     <span class="c"># native GPU UI (egui)</span>
+<span class="k">tokio</span> <span class="p">=</span> <span class="s">"1"</span>        <span class="c"># async runtime</span>
+<span class="k">tiny_http</span> <span class="p">=</span> <span class="s">"0.12"</span>  <span class="c"># 127.0.0.1 API for the extension</span>
+<span class="k">winreg</span> <span class="p">=</span> <span class="s">"0.56"</span>     <span class="c"># magnet: association (HKCU)</span>
+
+<span class="h">[profile.release]</span>
+<span class="k">lto</span> <span class="p">=</span> <span class="s">"thin"</span>
+<span class="k">strip</span> <span class="p">=</span> <span class="b">true</span>
+<span class="k">panic</span> <span class="p">=</span> <span class="s">"abort"</span></code></pre>
+          </div>
+          <div class="mini-stats">
+            <div class="mini-stat"><b>1 .exe</b><span>per app, no runtime</span></div>
+            <div class="mini-stat"><b>Per-user</b><span>no admin, HKCU only</span></div>
+            <div class="mini-stat"><b>MIT</b><span>read every line</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ================= Privacy ================= -->
+    <section class="section" id="privacy" aria-labelledby="privacy-title">
+      <div class="wrap split">
+        <div class="reveal">
+          <span class="kicker">Privacy</span>
+          <h2 id="privacy-title" class="h2">Your downloads are nobody else's business.</h2>
+          <p class="lead">Zenless has no servers to phone home to. The browser extension only ever talks to the Zenless apps running on your own PC, over <code>127.0.0.1</code>.</p>
+          <ul class="checks">
+            <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check-circle"/></svg><div><b>No telemetry, no analytics</b><span>Nothing about you or your downloads is collected or sent anywhere.</span></div></li>
+            <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check-circle"/></svg><div><b>No accounts, no ads</b><span>Download, install, use. That's the whole relationship.</span></div></li>
+            <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check-circle"/></svg><div><b>A locked-down local API</b><span>The apps listen on localhost only and reject requests from web pages. Only browser extensions get through.</span></div></li>
+            <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check-circle"/></svg><div><b>Your settings stay on your disk</b><span>Plain JSON files in <code>%APPDATA%\Zenless</code>. Open them, back them up, delete them.</span></div></li>
+          </ul>
+          <p class="cta-row cta-left"><a class="btn btn-ghost" href="/privacy">Read the privacy policy<svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#arrow-right"/></svg></a></p>
+        </div>
+
+        <figure class="flow reveal d1" aria-labelledby="flow-cap">
+          <figcaption id="flow-cap" class="sr-only">How data flows: the browser extension sends download links only to the Zenless apps on 127.0.0.1. Nothing goes to any Zenless server.</figcaption>
+          <div class="node">
+            <img src="/assets/img/extensions.svg" alt="" width="36" height="36">
+            <div><b>Zenless Browser Integration</b><small>Chrome · Edge · Brave · Firefox</small></div>
+          </div>
+          <div class="flow-link" aria-hidden="true"><span class="vline"></span><span>localhost only</span><span class="vline"></span></div>
+          <div class="flow-apps">
+            <div class="node">
+              <img src="/assets/img/download-manager.svg" alt="" width="36" height="36">
+              <div><b>Download Manager</b><small>127.0.0.1:6812</small></div>
+            </div>
+            <div class="node">
+              <img src="/assets/img/torrent.svg" alt="" width="36" height="36">
+              <div><b>Torrent</b><small>127.0.0.1:6813</small></div>
+            </div>
+          </div>
+          <div class="flow-link" aria-hidden="true"><span class="xline"></span></div>
+          <div class="node blocked">
+            <span class="node-ico"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#eye-off"/></svg></span>
+            <div><b>Telemetry &amp; analytics servers</b><small>there are none</small></div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ================= FAQ ================= -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="wrap faq-grid">
+        <div class="section-head reveal">
+          <span class="kicker">FAQ</span>
+          <h2 id="faq-title" class="h2">Questions, answered.</h2>
+          <p class="lead">Something else? <a href="https://github.com/zenless-inc">Open an issue on GitHub</a> and we'll get back to you.</p>
+        </div>
+
+        <div class="faq reveal d1">
+          <details>
+            <summary>Why separate apps instead of one?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-body">
+              <p>Because most people only need one of them. Separate apps stay small, start fast and can't drag each other down: a stuck torrent never slows a download, and updating one never touches the other.</p>
+              <p>They still work as a team. They share one theme system, and the browser extension sends magnet links to <strong>Zenless Torrent</strong> and everything else to the <strong>Download Manager</strong>.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Does the browser extension send my data anywhere?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-body">
+              <p><strong>No.</strong> It only talks to the Zenless apps on your own computer, at <code>127.0.0.1</code> (ports 6812 and 6813). When it hands over a download it passes the link plus what the website needs to allow it (the referrer, that site's cookies and your user agent) to the local app, which then downloads the file directly.</p>
+              <p>No analytics, no remote server, no account. Details are in the <a href="/privacy">privacy policy</a>.</p>
+            </div>
+          </details>
+          <details>
+            <summary>How do I install the Chrome extension?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-body">
+              <p>Until it's listed on the Chrome Web Store, you load it yourself. It takes about a minute:</p>
+              <ol>
+                <li>Download <a href="https://github.com/zenless-inc/zenless-chrome-extension/releases/latest/download/zenless-chrome-extension.zip">zenless-chrome-extension.zip</a> and unzip it. (Zenless Setup can also put an unpacked copy in <code>%LOCALAPPDATA%\Programs\Zenless\Browser Extensions\Chrome</code>.)</li>
+                <li>Open <code>chrome://extensions</code>. In other browsers use <code>edge://extensions</code>, <code>brave://extensions</code>, <code>vivaldi://extensions</code> or <code>opera://extensions</code>.</li>
+                <li>Switch on <strong>Developer mode</strong>.</li>
+                <li>Click <strong>Load unpacked</strong> and pick the folder that contains <code>manifest.json</code>.</li>
+                <li>Pin Zenless from the puzzle-piece menu so it's one click away.</li>
+              </ol>
+              <p>There's a step-by-step guide on the <a href="/download#extensions">download page</a>.</p>
+            </div>
+          </details>
+          <details>
+            <summary>What about Firefox?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-body">
+              <p>Download <a href="https://github.com/zenless-inc/zenless-firefox-extension/releases/latest/download/zenless-firefox-extension.xpi">zenless-firefox-extension.xpi</a>, open <code>about:addons</code>, click the gear icon, choose <strong>Install Add-on From File…</strong> and select the file.</p>
+              <p>If Firefox says the add-on can't be verified, load it from <code>about:debugging</code> → <strong>This Firefox</strong> → <strong>Load Temporary Add-on…</strong> instead. It stays active until Firefox restarts.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Is it really free?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-body">
+              <p>Yes. Every Zenless app is open source under the MIT license: free for personal and commercial use, with no trials, no ads and no "pro" tier. If you like it, a star or a bug report on GitHub helps a lot.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Windows says "Windows protected your PC". Is it safe?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-body">
+              <p>Zenless 0.1 is new and not code-signed yet, so Microsoft SmartScreen doesn't recognise it. Click <strong>More info</strong> → <strong>Run anyway</strong>. Only download Zenless from <a href="https://github.com/zenless-inc">github.com/zenless-inc</a> or this site. If you'd rather not trust a binary at all, build it from source.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Do I need administrator rights?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-body">
+              <p>No. Zenless Setup installs just for you into <code>%LOCALAPPDATA%\Programs\Zenless</code> and only writes to your own part of the registry (HKCU), for things like autostart and magnet links. You won't see a UAC prompt.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ================= Open source ================= -->
+    <section class="section" id="source" aria-labelledby="source-title">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="kicker">Open source</span>
+          <h2 id="source-title" class="h2">Six repos. One MIT license.</h2>
+          <p class="lead">Read the code, file an issue, send a pull request, or build it all yourself.</p>
+        </div>
+        <div class="repos reveal">
+          <a class="repo" href="https://github.com/zenless-inc/zenless-download-manager">
+            <img src="/assets/img/download-manager.svg" alt="" width="40" height="40">
+            <span><span class="repo-name">zenless-download-manager</span><span class="repo-desc">Multi-connection download manager</span><span class="repo-lang">Rust</span></span>
+            <svg class="icon arrow" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#arrow-up-right"/></svg>
+          </a>
+          <a class="repo" href="https://github.com/zenless-inc/zenless-torrent-client">
+            <img src="/assets/img/torrent.svg" alt="" width="40" height="40">
+            <span><span class="repo-name">zenless-torrent-client</span><span class="repo-desc">BitTorrent client powered by librqbit</span><span class="repo-lang">Rust</span></span>
+            <svg class="icon arrow" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#arrow-up-right"/></svg>
+          </a>
+          <a class="repo" href="https://github.com/zenless-inc/zenless-installer">
+            <img src="/assets/img/installer.svg" alt="" width="40" height="40">
+            <span><span class="repo-name">zenless-installer</span><span class="repo-desc">Graphical installer &amp; uninstaller</span><span class="repo-lang">Rust</span></span>
+            <svg class="icon arrow" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#arrow-up-right"/></svg>
+          </a>
+          <a class="repo" href="https://github.com/zenless-inc/zenless-chrome-extension">
+            <img src="/assets/img/extensions.svg" alt="" width="40" height="40">
+            <span><span class="repo-name">zenless-chrome-extension</span><span class="repo-desc">Browser integration for Chrome, Edge, Brave, Vivaldi &amp; Opera</span><span class="repo-lang js">JavaScript</span></span>
+            <svg class="icon arrow" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#arrow-up-right"/></svg>
+          </a>
+          <a class="repo" href="https://github.com/zenless-inc/zenless-firefox-extension">
+            <img src="/assets/img/extensions.svg" alt="" width="40" height="40">
+            <span><span class="repo-name">zenless-firefox-extension</span><span class="repo-desc">Browser integration for Firefox</span><span class="repo-lang js">JavaScript</span></span>
+            <svg class="icon arrow" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#arrow-up-right"/></svg>
+          </a>
+          <a class="repo" href="https://github.com/zenless-inc/zenless-website">
+            <img src="/assets/img/zenless.svg" alt="" width="40" height="40">
+            <span><span class="repo-name">zenless-website</span><span class="repo-desc">This website, plain HTML, CSS &amp; JS</span><span class="repo-lang html">HTML</span></span>
+            <svg class="icon arrow" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#arrow-up-right"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Final CTA ================= -->
+    <section class="section-tight" aria-labelledby="cta-title">
+      <div class="wrap">
+        <div class="cta-card reveal">
+          <span class="kicker">Ready when you are</span>
+          <h2 id="cta-title" class="h2">Stay zen. <span class="grad-text">Get Zenless.</span></h2>
+          <p class="lead">Pick the apps you want, choose a theme, done. Setup handles the rest.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary btn-lg" href="https://github.com/zenless-inc/zenless-installer/releases/latest/download/ZenlessSetup.exe"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#windows"/></svg>Download Zenless Setup</a>
+            <a class="btn btn-ghost btn-lg" href="/download">All downloads<svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#arrow-right"/></svg></a>
+          </div>
+          <ul class="fineprint" aria-label="Requirements">
+            <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check"/></svg>Windows 10 / 11</li>
+            <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check"/></svg>No admin needed</li>
+            <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check"/></svg>Free, MIT licensed</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="brand" href="/" aria-label="Zenless home">
+            <svg class="mark" viewBox="0 0 256 256" aria-hidden="true"><defs><linearGradient id="zg-foot" gradientUnits="userSpaceOnUse" x1="40" y1="40" x2="216" y2="216"><stop class="stop-a" offset="0"/><stop class="stop-b" offset="1"/></linearGradient></defs><rect class="mark-bg" x="12" y="12" width="232" height="232" rx="58"/><path class="mark-z" stroke="url(#zg-foot)" d="M76 72 H180 L84 184 H180"/></svg>
+            <span>Zenless</span>
+          </a>
+          <p>Free, open-source Windows apps for downloading and torrenting, written in Rust.</p>
+          <div class="theme-picker" data-theme-picker hidden>
+            <svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#palette"/></svg>
+            <label for="theme-select">Theme</label>
+            <select id="theme-select" data-theme-select></select>
+          </div>
+        </div>
+        <nav class="foot-col" aria-labelledby="foot-product">
+          <h2 id="foot-product">Product</h2>
+          <ul>
+            <li><a href="/download">Download</a></li>
+            <li><a href="/#apps">Apps</a></li>
+            <li><a href="/#themes">Themes</a></li>
+            <li><a href="/#faq">FAQ</a></li>
+          </ul>
+        </nav>
+        <nav class="foot-col" aria-labelledby="foot-help">
+          <h2 id="foot-help">Help</h2>
+          <ul>
+            <li><a href="/download#extensions">Extension setup</a></li>
+            <li><a href="/download#smartscreen">SmartScreen warning</a></li>
+            <li><a href="/download#requirements">System requirements</a></li>
+            <li><a href="/privacy">Privacy policy</a></li>
+          </ul>
+        </nav>
+        <nav class="foot-col" aria-labelledby="foot-gh">
+          <h2 id="foot-gh">GitHub</h2>
+          <ul>
+            <li><a href="https://github.com/zenless-inc">zenless-inc</a></li>
+            <li><a href="https://github.com/zenless-inc/zenless-download-manager">Download Manager</a></li>
+            <li><a href="https://github.com/zenless-inc/zenless-torrent-client">Torrent</a></li>
+            <li><a href="https://github.com/zenless-inc/zenless-installer">Setup</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Zenless. Released under the <a href="https://github.com/zenless-inc/zenless-website/blob/main/LICENSE">MIT License</a>.</span>
+        <span>Made with Rust. Zero telemetry.</span>
+      </div>
+    </div>
+  </footer>
+  <div class="sr-only" aria-live="polite" data-live></div>
+</body>
+</html>
