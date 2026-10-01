@@ -45,7 +45,7 @@
     "description": "Free, open-source suite of native Windows apps: a multi-connection download manager, a BitTorrent client and browser integration.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Windows 10, Windows 11",
-    "softwareVersion": "0.1.0",
+    "softwareVersion": "0.2.0",
     "license": "https://opensource.org/licenses/MIT",
     "url": "https://zenless-suite.vercel.app/",
     "downloadUrl": "https://github.com/zenless-inc/zenless-installer/releases/latest/download/ZenlessSetup.exe",
@@ -90,7 +90,7 @@
         <div class="hero-mark rise rise-1">
           <svg class="mark" viewBox="0 0 256 256" role="img" aria-label="Zenless logo"><defs><linearGradient id="zg-hero" gradientUnits="userSpaceOnUse" x1="40" y1="40" x2="216" y2="216"><stop class="stop-a" offset="0"/><stop class="stop-b" offset="1"/></linearGradient></defs><rect class="mark-bg" x="12" y="12" width="232" height="232" rx="58"/><path class="mark-z" stroke="url(#zg-hero)" d="M76 72 H180 L84 184 H180"/></svg>
         </div>
-        <a class="pill rise rise-1" href="/download"><span class="pill-badge">v0.1</span>Free &amp; open source for Windows<svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#arrow-right"/></svg></a>
+        <a class="pill rise rise-1" href="/download"><span class="pill-badge">v0.2</span>Free &amp; open source for Windows<svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#arrow-right"/></svg></a>
         <h1 id="hero-title" class="hero-title rise rise-2">
           <span class="line">Download faster.</span>
           <span class="line">Torrent smarter.</span>
@@ -297,6 +297,8 @@
               <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#globe"/></svg>Browser capture via the extension</li>
               <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#layers"/></svg>Live segment map per download</li>
               <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#palette"/></svg>13 themes + custom themes</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#sparkle"/></svg>Automatic updates, installed when you close the app</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#puzzle"/></svg>Keeps the installed Chrome extension up to date</li>
             </ul>
             <div class="card-visual" aria-hidden="true">
               <div class="conn-viz">
@@ -330,6 +332,7 @@
               <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#gauge"/></svg>Download &amp; upload speed limits</li>
               <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#upload"/></svg>Seeding stats and share ratio</li>
               <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#link"/></svg>Opens magnet: links system-wide</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#sparkle"/></svg>Automatic updates</li>
             </ul>
             <div class="card-visual" aria-hidden="true">
               <div class="pieces" data-pieces></div>
@@ -357,6 +360,7 @@
               <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#magnet"/></svg>Magnet links go straight to Zenless Torrent</li>
               <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#list"/></svg>Download all links on a page</li>
               <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#lock"/></svg>Only talks to 127.0.0.1</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#sparkle"/></svg>Automatic updates: the Download Manager refreshes the Chrome extension</li>
             </ul>
             <div class="card-visual">
               <ul class="chips" aria-label="Supported browsers">
@@ -636,20 +640,27 @@
             <div class="faq-body">
               <p>Until it's listed on the Chrome Web Store, you load it yourself. It takes about a minute:</p>
               <ol>
-                <li>Download <a href="https://github.com/zenless-inc/zenless-chrome-extension/releases/latest/download/zenless-chrome-extension.zip">zenless-chrome-extension.zip</a> and unzip it. (Zenless Setup can also put an unpacked copy in <code>%LOCALAPPDATA%\Programs\Zenless\Browser Extensions\Chrome</code>.)</li>
-                <li>Open <code>chrome://extensions</code>. In other browsers use <code>edge://extensions</code>, <code>brave://extensions</code>, <code>vivaldi://extensions</code> or <code>opera://extensions</code>.</li>
+                <li>Use the copy Zenless Setup put in <code>%LOCALAPPDATA%\Programs\Zenless\Browser Extensions\Chrome</code> (Setup's <strong>Show folder</strong> button highlights it), or download <a href="https://github.com/zenless-inc/zenless-chrome-extension/releases/latest/download/zenless-chrome-extension.zip">zenless-chrome-extension.zip</a> and unzip it.</li>
+                <li>Paste <code>chrome://extensions</code> into the address bar. Browsers don't open these addresses from links or other apps. In other browsers use <code>edge://extensions</code>, <code>brave://extensions</code>, <code>vivaldi://extensions</code> or <code>opera://extensions</code>.</li>
                 <li>Switch on <strong>Developer mode</strong>.</li>
-                <li>Click <strong>Load unpacked</strong> and pick the folder that contains <code>manifest.json</code>.</li>
+                <li>Drag the folder that contains <code>manifest.json</code> onto the page (or click <strong>Load unpacked</strong> and pick it).</li>
                 <li>Pin Zenless from the puzzle-piece menu so it's one click away.</li>
               </ol>
-              <p>There's a step-by-step guide on the <a href="/download#extensions">download page</a>.</p>
+              <p>You only do this once: the Download Manager keeps Setup's copy up to date and the extension reloads itself. There's a step-by-step guide on the <a href="/download#extensions">download page</a>.</p>
             </div>
           </details>
           <details>
             <summary>What about Firefox?<span class="plus" aria-hidden="true"></span></summary>
             <div class="faq-body">
-              <p>Download <a href="https://github.com/zenless-inc/zenless-firefox-extension/releases/latest/download/zenless-firefox-extension.xpi">zenless-firefox-extension.xpi</a>, open <code>about:addons</code>, click the gear icon, choose <strong>Install Add-on From File…</strong> and select the file.</p>
-              <p>If Firefox says the add-on can't be verified, load it from <code>about:debugging</code> → <strong>This Firefox</strong> → <strong>Load Temporary Add-on…</strong> instead. It stays active until Firefox restarts.</p>
+              <p>The Firefox add-on is awaiting Mozilla's signature, and regular Firefox only keeps signed add-ons installed. Until it's signed, download <a href="https://github.com/zenless-inc/zenless-firefox-extension/releases/latest/download/zenless-firefox-extension.xpi">zenless-firefox-extension.xpi</a>, paste <code>about:debugging#/runtime/this-firefox</code> into the address bar, click <strong>Load Temporary Add-on…</strong> and pick the file. It stays active until Firefox restarts.</p>
+              <p>Once the signed version is out, install it from <code>about:addons</code> → gear icon → <strong>Install Add-on From File…</strong>, and Firefox keeps it up to date by itself.</p>
+            </div>
+          </details>
+          <details>
+            <summary>How do updates work?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-body">
+              <p>The Download Manager and Torrent check GitHub for a new release every few hours, download it in the background, verify its checksum and install it when you close the app (or right away, if you click <strong>Restart now</strong>). You can turn this off in <strong>Settings → About → Updates</strong>.</p>
+              <p>The Download Manager also refreshes the browser extension that Zenless Setup installed. The Chrome extension then reloads itself; Firefox shows a notice in the Zenless popup.</p>
             </div>
           </details>
           <details>
@@ -661,7 +672,7 @@
           <details>
             <summary>Windows says "Windows protected your PC". Is it safe?<span class="plus" aria-hidden="true"></span></summary>
             <div class="faq-body">
-              <p>Zenless 0.1 is new and not code-signed yet, so Microsoft SmartScreen doesn't recognise it. Click <strong>More info</strong> → <strong>Run anyway</strong>. Only download Zenless from <a href="https://github.com/zenless-inc">github.com/zenless-inc</a> or this site. If you'd rather not trust a binary at all, build it from source.</p>
+              <p>Zenless 0.2 is new and not code-signed yet, so Microsoft SmartScreen doesn't recognise it. Click <strong>More info</strong> → <strong>Run anyway</strong>. Only download Zenless from <a href="https://github.com/zenless-inc">github.com/zenless-inc</a> or this site. If you'd rather not trust a binary at all, build it from source.</p>
             </div>
           </details>
           <details>

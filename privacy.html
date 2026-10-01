@@ -71,7 +71,7 @@
         <span class="kicker">Privacy policy</span>
         <h1 id="page-title" class="page-title">We collect <span class="grad-text">nothing.</span></h1>
         <p class="lead">That's the short version. The long version explains exactly what the apps, the browser extensions and this website do with your data, which is keep it on your PC.</p>
-        <p class="policy-date">Last updated: <time datetime="2026-09-30">September 30, 2026</time> · Applies to Zenless 1.0</p>
+        <p class="policy-date">Last updated: <time datetime="2026-10-01">October 1, 2026</time> · Applies to Zenless 1.0</p>
       </div>
     </section>
 
@@ -112,11 +112,12 @@
 
         <h2 id="apps">The desktop apps</h2>
         <h3>Network connections they make</h3>
-        <p>The apps only connect where you tell them to:</p>
+        <p>Apart from update checks, the apps only connect where you tell them to:</p>
         <ul>
           <li><strong>Download Manager</strong> connects to the servers that host the files you download. If a download was handed over by the browser extension, the request includes what the website needs to allow it, such as the referring page, that site's cookies and your browser's user agent, exactly as your browser would have sent them.</li>
           <li><strong>Torrent</strong> connects to the trackers, DHT nodes and peers of the torrents you add. This is how BitTorrent works: <strong>your IP address is visible to other peers and to trackers</strong> of any torrent you download or seed.</li>
           <li><strong>Setup</strong> installs the components you choose and records nothing about your system or your choices. Where anything is fetched from GitHub (for example a release file), that request is handled by GitHub under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</li>
+          <li><strong>Update checks.</strong> Download Manager and Torrent ask GitHub (<code>api.github.com</code>) for their latest release when they start and every few hours while they run, and download new versions from GitHub Releases. The Download Manager also checks the browser extensions' releases when Zenless Setup installed them. These requests identify only the app and its version (in the user agent), and GitHub handles them under its privacy statement. You can turn automatic checks off in <strong>Settings → About → Updates</strong>.</li>
         </ul>
 
         <h3>The local API</h3>
@@ -155,7 +156,8 @@
           <li>the cookies and user agent needed for the site to allow the download;</li>
           <li>for torrents, the magnet link or the <code>.torrent</code> file.</li>
         </ul>
-        <p>The app then downloads the file directly from the website, as your browser would have. The extensions also ask the local apps whether they're running, to show their status.</p>
+        <p>The app then downloads the file directly from the website, as your browser would have. The extensions also ask the local apps whether they're running, to show their status, and which version of the extension the Download Manager has installed, so they can update themselves.</p>
+        <p>Firefox itself checks <code>https://zenless-suite.vercel.app/firefox/updates.json</code> about once a day for a newer signed version of the Firefox add-on. That is Firefox's normal add-on update check, and the host logs it like any other request to this website (see below).</p>
 
         <h3>Permissions</h3>
         <p>The permissions your browser shows when you install an extension are used only for the purposes above. They cover access to downloads (to capture them), to cookies (so downloads that need you to be logged in still work in Zenless), to page content (to find links and media) and to storage (for the extension's own settings, such as which file types to capture).</p>

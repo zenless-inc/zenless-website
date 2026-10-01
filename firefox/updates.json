@@ -1,0 +1,18 @@
+{
+  "addons": {
+    "zenless-integration@zenless-inc.github.io": {
+      "updates": [
+        {
+          "version": "0.1.0",
+          "update_link": "https://github.com/zenless-inc/zenless-firefox-extension/releases/download/v0.1.0/zenless-firefox-extension.xpi",
+          "update_hash": "sha256:da7bc4045eb6e5d8096aacb6cfa87b45686ea7a0cdf072836b574b014d1ad3bf",
+          "applications": {
+            "gecko": {
+              "strict_min_version": "128.0"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -16,6 +16,7 @@ It's plain HTML, CSS and vanilla JavaScript, with no framework, no bundler and n
 | `download.html` | `/download` | Installer, individual downloads, system requirements, extension setup, SmartScreen help |
 | `privacy.html` | `/privacy` | Privacy policy for the apps, the extensions and this site |
 | `404.html` | any missing URL | Served automatically by Vercel |
+| `firefox/updates.json` | `/firefox/updates.json` | Firefox update manifest (the add-on's `gecko.update_url`), served as JSON with a 5-minute cache |
 
 ## Layout
 
@@ -31,6 +32,7 @@ brand/               source logos (SVG, PNG, ICO), a small press kit
 tools/gen-themes.mjs regenerates themes.css from the Rust theme file (not deployed)
 favicon.svg / favicon.ico / apple-touch-icon.png
 vercel.json          clean URLs, cache + security headers (incl. CSP)
+firefox/updates.json Firefox update manifest (see below)
 robots.txt, sitemap.xml
 ```
 
@@ -76,7 +78,8 @@ search and replace that string. Everything else uses root-relative paths.
 
 `vercel.json` serves `/assets/css/*` and `/assets/js/*` as `immutable` for a year. They're referenced
 with a version query (`?v=0.1.0`), so **bump `?v=` in every HTML file whenever you change a CSS or JS file**
-(or the icon sprite). Images are cached for a week, and HTML uses Vercel's default (always revalidated).
+(or the icon sprite). Images are cached for a week, and HTML uses Vercel's default (always revalidated). `/firefox/updates.json` is
+sent as `application/json` with a 5-minute cache, so a new entry reaches Firefox quickly.
 
 ## Security headers
 
@@ -107,6 +110,14 @@ live mocks only animate while they're on screen and the tab is visible.
 
 Import the repo in Vercel as a static project (Framework preset: **Other**, no build command, output
 directory `.`). `vercel.json` handles the rest.
+
+## Firefox update manifest
+
+The Firefox add-on's `browser_specific_settings.gecko.update_url` is `https://zenless-suite.vercel.app/firefox/updates.json`. Firefox reads it about once a day and installs a newer **signed** version by itself, after checking `update_hash`. After each signed release, add the entry that the Firefox extension's release workflow prints (or run `node scripts/updates-manifest.js zenless-firefox-extension.xpi vX.Y.Z` in that repo) to `updates[]` and deploy. Keep older entries: Firefox picks the newest compatible one. Each `update_hash` must be the SHA-256 of the exact file at `update_link`, so compare it with the release asset's digest:
+
+```bash
+gh api repos/zenless-inc/zenless-firefox-extension/releases/latest --jq '.assets[] | select(.name|endswith(".xpi")) | .digest'
+```
 
 ## License
 

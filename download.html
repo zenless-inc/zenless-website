@@ -68,7 +68,7 @@
   <main id="main">
     <section class="page-hero" aria-labelledby="page-title">
       <div class="wrap">
-        <span class="kicker">Download · v0.1.0</span>
+        <span class="kicker">Download · v0.2.0</span>
         <h1 id="page-title" class="page-title">Get Zenless for <span class="grad-text">Windows.</span></h1>
         <p class="lead">Free and open source. Take the installer and pick your apps, or download any of them on their own.</p>
       </div>
@@ -99,8 +99,9 @@
               <svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#windows"/></svg>Download ZenlessSetup.exe
             </a>
             <ul class="meta-list">
-              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check"/></svg>Version 0.1.0 · Windows 10 &amp; 11 (64-bit)</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check"/></svg>Version 0.2.0 · Windows 10 &amp; 11 (64-bit)</li>
               <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check"/></svg>Per-user install, no admin needed</li>
+              <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check"/></svg>Automatic updates: the apps update themselves, and the Download Manager keeps the installed Chrome extension current</li>
               <li><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#check"/></svg>Clean uninstall from Windows Settings, <code>--silent</code> mode for IT</li>
             </ul>
             <a class="small-link" href="https://github.com/zenless-inc/zenless-installer/releases">Release notes &amp; previous versions<svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#arrow-up-right"/></svg></a>
@@ -111,7 +112,7 @@
           <li><b>Download</b><span>Save <code>ZenlessSetup.exe</code> from GitHub Releases.</span></li>
           <li><b>Run it</b><span>If SmartScreen appears, choose <strong>More info</strong> → <strong>Run anyway</strong> (<a href="#smartscreen">why?</a>).</span></li>
           <li><b>Pick your apps</b><span>Tick the components, choose a theme, click Install.</span></li>
-          <li><b>Connect your browser</b><span>Add the extension so downloads open in Zenless (<a href="#extensions">guide</a>).</span></li>
+          <li><b>Connect your browser</b><span>Drag the extension folder onto your browser's extensions page, once (<a href="#extensions">guide</a>).</span></li>
         </ol>
       </div>
     </section>
@@ -129,7 +130,7 @@
             <img src="/assets/img/download-manager.svg" alt="" width="52" height="52">
             <div>
               <h3>Zenless Download Manager</h3>
-              <p>Up to 32 connections per file, resume across restarts, queue, speed limiter and segment map.</p>
+              <p>Up to 32 connections per file, resume across restarts, queue, speed limiter and segment map. Updates itself.</p>
               <span class="dl-file">zenless-dm.exe · Windows x64</span>
             </div>
             <div class="dl-actions">
@@ -141,7 +142,7 @@
             <img src="/assets/img/torrent.svg" alt="" width="52" height="52">
             <div>
               <h3>Zenless Torrent</h3>
-              <p>Magnet links and .torrent files, file selection, DHT, speed limits and seeding stats.</p>
+              <p>Magnet links and .torrent files, file selection, DHT, speed limits and seeding stats. Updates itself.</p>
               <span class="dl-file">zenless-torrent.exe · Windows x64</span>
             </div>
             <div class="dl-actions">
@@ -153,7 +154,7 @@
             <img src="/assets/img/extensions.svg" alt="" width="52" height="52">
             <div>
               <h3>Browser Integration for Chrome &amp; co.</h3>
-              <p>For Chrome, Edge, Brave, Vivaldi and Opera. Auto-capture, media sniffer, magnet hand-off, download all links.</p>
+              <p>For Chrome, Edge, Brave, Vivaldi and Opera. Auto-capture, media sniffer, magnet hand-off, download all links. Installed with Zenless Setup, it stays up to date automatically.</p>
               <span class="dl-file">zenless-chrome-extension.zip · <a href="#chromium">install guide</a></span>
             </div>
             <div class="dl-actions">
@@ -165,7 +166,7 @@
             <img src="/assets/img/extensions.svg" alt="" width="52" height="52">
             <div>
               <h3>Browser Integration for Firefox</h3>
-              <p>The same integration for Firefox: capture downloads, sniff media and send magnets to Zenless.</p>
+              <p>The same integration for Firefox: capture downloads, sniff media and send magnets to Zenless. Awaiting Mozilla signing, so it loads as a temporary add-on for now.</p>
               <span class="dl-file">zenless-firefox-extension.xpi · <a href="#firefox">install guide</a></span>
             </div>
             <div class="dl-actions">
@@ -216,7 +217,7 @@
         <div class="section-head reveal">
           <span class="kicker">Browser integration</span>
           <h2 id="ext-title" class="h2">Set up the extension.</h2>
-          <p class="lead">Until the extensions are listed on the Chrome Web Store and Firefox Add-ons, you install them by hand. It takes about a minute. Keep Zenless Download Manager running (and Zenless Torrent, if you use it) and the extension connects to it on its own.</p>
+          <p class="lead">Until the extensions are listed on the Chrome Web Store and Firefox Add-ons, you install them by hand. It takes about a minute, and you only do it once: updates arrive automatically. Keep Zenless Download Manager running (and Zenless Torrent, if you use it) and the extension connects to it on its own.</p>
         </div>
 
         <div class="guide-grid">
@@ -224,8 +225,8 @@
             <h3 id="chromium-title"><img src="/assets/img/extensions.svg" alt="" width="36" height="36">Chrome, Edge, Brave, Vivaldi &amp; Opera</h3>
             <p>Chromium-based browsers load the extension as an unpacked folder.</p>
             <ol class="olist">
-              <li><div><strong>Get the files.</strong> Download <a href="https://github.com/zenless-inc/zenless-chrome-extension/releases/latest/download/zenless-chrome-extension.zip">zenless-chrome-extension.zip</a> and extract it to a folder you'll keep, because the browser loads it from there. If you ticked the extension in Zenless Setup, an unpacked copy is already in <code>%LOCALAPPDATA%\Programs\Zenless\Browser Extensions\Chrome</code>.</div></li>
-              <li><div><strong>Open the extensions page.</strong> Type the address for your browser into the address bar (websites aren't allowed to link to it):
+              <li><div><strong>Get the files.</strong> If you ticked the extension in Zenless Setup, it's already in <code>%LOCALAPPDATA%\Programs\Zenless\Browser Extensions\Chrome</code>: Setup's <strong>Show folder</strong> button opens Explorer with that folder selected. Otherwise download <a href="https://github.com/zenless-inc/zenless-chrome-extension/releases/latest/download/zenless-chrome-extension.zip">zenless-chrome-extension.zip</a> and extract it to a folder you'll keep, because the browser loads it from there.</div></li>
+              <li><div><strong>Open the extensions page.</strong> Browsers don't open <code>chrome://</code> links from websites or other apps (Zenless Setup included), so copy the address for your browser and paste it into the address bar: <kbd>Ctrl</kbd>+<kbd>L</kbd>, <kbd>Ctrl</kbd>+<kbd>V</kbd>, <kbd>Enter</kbd>.
                 <ul class="url-list">
                   <li><code>chrome://extensions</code><span>Chrome</span><button class="copy-btn" type="button" data-copy="chrome://extensions" aria-label="Copy chrome://extensions"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#copy"/></svg><span class="copy-label">Copy</span></button></li>
                   <li><code>edge://extensions</code><span>Edge</span><button class="copy-btn" type="button" data-copy="edge://extensions" aria-label="Copy edge://extensions"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#copy"/></svg><span class="copy-label">Copy</span></button></li>
@@ -235,27 +236,31 @@
                 </ul>
               </div></li>
               <li><div><strong>Turn on Developer mode.</strong> The toggle is in the top-right corner in Chrome and Brave, and in the left sidebar in Edge.</div></li>
-              <li><div><strong>Click “Load unpacked”</strong> and select the extracted folder: the one that contains <code>manifest.json</code>.</div></li>
+              <li><div><strong>Drag the folder onto the page.</strong> Drop the <code>Chrome</code> folder (the one that contains <code>manifest.json</code>) anywhere on the extensions page. Or click <strong>Load unpacked</strong> and select it; you can paste the folder path into the picker's address bar.</div></li>
               <li><div><strong>Pin it.</strong> Open the puzzle-piece menu next to the address bar and pin Zenless so it's one click away.</div></li>
             </ol>
+            <div class="note">
+              <svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#refresh"/></svg>
+              <p><strong>Updates are automatic.</strong> Zenless Download Manager keeps the folder from Zenless Setup up to date, and the extension reloads itself to pick up the new version. If it can't (for example, because you loaded a different folder), its popup says so: reload it from the extensions page.</p>
+            </div>
           </article>
 
           <article class="guide reveal d1" id="firefox" aria-labelledby="firefox-title">
             <h3 id="firefox-title"><img src="/assets/img/extensions.svg" alt="" width="36" height="36">Firefox</h3>
-            <p>Firefox installs the extension straight from the <code>.xpi</code> file.</p>
+            <p>The Firefox add-on is <strong>awaiting Mozilla's signature</strong>. Regular Firefox only keeps signed add-ons installed, so until then you load it as a temporary add-on. It stays loaded until Firefox restarts.</p>
             <ol class="olist">
               <li><div><strong>Get the file.</strong> Download <a href="https://github.com/zenless-inc/zenless-firefox-extension/releases/latest/download/zenless-firefox-extension.xpi">zenless-firefox-extension.xpi</a>. Zenless Setup can also save it to <code>%LOCALAPPDATA%\Programs\Zenless\Browser Extensions</code>.</div></li>
-              <li><div><strong>Open the add-ons page.</strong>
+              <li><div><strong>Open the debugging page.</strong> Firefox doesn't open it from links or other apps either, so copy it and paste it into the address bar:
                 <ul class="url-list">
-                  <li><code>about:addons</code><span>Firefox</span><button class="copy-btn" type="button" data-copy="about:addons" aria-label="Copy about:addons"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#copy"/></svg><span class="copy-label">Copy</span></button></li>
+                  <li><code>about:debugging#/runtime/this-firefox</code><span>Firefox</span><button class="copy-btn" type="button" data-copy="about:debugging#/runtime/this-firefox" aria-label="Copy about:debugging#/runtime/this-firefox"><svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#copy"/></svg><span class="copy-label">Copy</span></button></li>
                 </ul>
               </div></li>
-              <li><div><strong>Install from file.</strong> Click the gear icon, choose <strong>Install Add-on From File…</strong> and pick the <code>.xpi</code>.</div></li>
-              <li><div><strong>Confirm.</strong> Click <strong>Add</strong> when Firefox shows the permissions, then pin Zenless from the extensions menu.</div></li>
+              <li><div><strong>Load it.</strong> Click <strong>Load Temporary Add-on…</strong> and pick the <code>.xpi</code>. If the welcome page asks for site access, click <strong>Allow access</strong>.</div></li>
+              <li><div><strong>After a restart,</strong> load it again the same way. When a newer version is available, the Zenless popup tells you, and <strong>Reload</strong> on the same page picks it up.</div></li>
             </ol>
             <div class="note">
               <svg class="icon" aria-hidden="true"><use href="/assets/img/icons.svg?v=0.1.0#info"/></svg>
-              <p><strong>“This add-on could not be verified”?</strong> Regular Firefox only keeps add-ons signed by Mozilla. Until the signed build is on addons.mozilla.org, open <code>about:debugging#/runtime/this-firefox</code>, click <strong>Load Temporary Add-on…</strong> and pick the <code>.xpi</code>. It stays loaded until Firefox restarts. Firefox Developer Edition and Nightly can keep it permanently once <code>xpinstall.signatures.required</code> is set to <code>false</code> in <code>about:config</code>.</p>
+              <p><strong>Once the signed version is out,</strong> install it for good: open <code>about:addons</code>, click the gear icon, choose <strong>Install Add-on From File…</strong> and pick the <code>.xpi</code>. Firefox then keeps it up to date by itself. Firefox Developer Edition and Nightly can already keep the unsigned file installed once <code>xpinstall.signatures.required</code> is set to <code>false</code> in <code>about:config</code>.</p>
             </div>
           </article>
         </div>
@@ -269,7 +274,7 @@
           <div>
             <span class="kicker">Heads-up</span>
             <h2 id="ss-title">Seeing “Windows protected your PC”?</h2>
-            <p>Zenless 0.1 is brand new and isn't code-signed yet, so Microsoft Defender SmartScreen hasn't seen enough downloads to recognise it. That's normal for new open-source apps. To run it anyway:</p>
+            <p>Zenless 0.2 is brand new and isn't code-signed yet, so Microsoft Defender SmartScreen hasn't seen enough downloads to recognise it. That's normal for new open-source apps. To run it anyway:</p>
             <ol class="olist">
               <li><div>Click <strong>More info</strong>.</div></li>
               <li><div>Check that the app is <code>ZenlessSetup.exe</code> (or the app you downloaded), then click <strong>Run anyway</strong>.</div></li>
