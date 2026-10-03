@@ -1937,16 +1937,16 @@ a.pill:hover {
   }
 }
 
-/* 13 swatches + 1 "custom" tile: fixed column counts so the custom tile
-   always fills the last row exactly (4 cols → span 3, 3 → 2, 2 → 1). */
+/* 34 swatches + 1 "custom" tile: fixed column counts so the custom tile
+   always fills the last row exactly (5 cols → span 1, 3 → 2, 2 → 2). */
 .swatches {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 12px;
 }
 
 .swatches .swatch-custom {
-  grid-column: span 3;
+  grid-column: span 1;
 }
 
 @media (max-width: 620px) {
@@ -1964,7 +1964,7 @@ a.pill:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .swatches .swatch-custom {
-    grid-column: span 1;
+    grid-column: span 2;
   }
 }
 

@@ -1,5 +1,5 @@
 // Regenerates assets/css/themes.css from the apps' shared theme file, so the
-// website uses exactly the same 13 palettes as the Rust apps.
+// website uses exactly the same palettes as the Rust apps.
 //
 //   node tools/gen-themes.mjs [path/to/theme.rs]
 //
@@ -43,7 +43,13 @@ themes.forEach((t, i) => {
   css += `  color-scheme: ${t.dark ? "dark" : "light"};\n}\n`;
 });
 writeFileSync(out, css);
-
 console.log(`Wrote ${themes.length} themes to ${out}`);
-console.log("If names or order changed, update the list in assets/js/theme-init.js too:");
-console.log(themes.map((t) => `  ["${t.id}", "${t.name}"]`).join(",\n"));
+
+// Keep the id/name list in theme-init.js (used before first paint) in sync.
+const init = join(repo, "assets", "js", "theme-init.js");
+const initSrc = readFileSync(init, "utf8");
+const list = themes.map((t) => `    [${JSON.stringify(t.id)}, ${JSON.stringify(t.name)}]`).join(",\n");
+const updated = initSrc.replace(/var themes = \[[\s\S]*?\n  \];/, `var themes = [\n${list}\n  ];`);
+if (updated === initSrc && !initSrc.includes(list)) throw new Error("theme list not found in theme-init.js");
+writeFileSync(init, updated);
+console.log(`Updated the theme list in ${init}`);

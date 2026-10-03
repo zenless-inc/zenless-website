@@ -22,7 +22,7 @@ It's plain HTML, CSS and vanilla JavaScript, with no framework, no bundler and n
 
 ```
 assets/
-  css/themes.css     13 app palettes (GENERATED, see "Themes")
+  css/themes.css     34 app palettes (GENERATED, see "Themes")
   css/site.css       everything else, written only in theme tokens
   js/theme-init.js   runs in <head>: applies the saved theme before first paint
   js/site.js         theme switcher, mobile nav, scroll reveals, animated app mocks, copy buttons
@@ -48,8 +48,8 @@ npx serve .
 
 ## Themes
 
-The 13 palettes (Zenless, Midnight, Dracula, Nord, Tokyo Night, Catppuccin Mocha, Gruvbox, Rosé Pine,
-Neon Cyber, Forest, Solarized Light, Paper, High Contrast) are the exact 15-color palettes from
+The 34 palettes (Zenless, the AMOLED set, Dracula, Nord, Catppuccin, One Dark, Kanagawa, Synthwave,
+Solarized, Paper, Lavender, Sakura and more) are the exact 15-color palettes from
 `builtin_themes()` in the apps' shared `src/shared/theme.rs`. Each is a `[data-theme="<id>"]` block of
 CSS custom properties (`--bg --surface --surface2 --input --stripe --border --text --dim --accent
 --accent-fg --accent2 --success --warning --danger --info`). `site.css` derives everything else from them
@@ -65,7 +65,8 @@ with `color-mix()`.
   node tools/gen-themes.mjs path/to/theme.rs
   ```
 
-  If a theme is added, renamed or reordered, also update the list in `assets/js/theme-init.js`.
+  The script also rewrites the id/name list in `assets/js/theme-init.js`. After regenerating, bump the
+  `?v=` cache-buster on the CSS/JS links in every page (those files are cached for a year).
 
 ## Domain
 
